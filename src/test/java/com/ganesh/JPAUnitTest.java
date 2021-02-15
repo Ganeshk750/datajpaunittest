@@ -9,6 +9,8 @@ package com.ganesh;
 import com.ganesh.model.Tutorial;
 import com.ganesh.repository.TutorialRepository;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -21,11 +23,13 @@ public class JPAUnitTest {
     private TestEntityManager entityManager;
     @Autowired
     TutorialRepository repository;
+    private static final Logger logger = LoggerFactory.getLogger(JPAUnitTest.class);
 
     @Test
     public void should_find_no_tutorial_if_repository_is_empty(){
         Iterable<Tutorial> tutorials = repository.findAll();
         assertThat(tutorials).isEmpty();
+        logger.info("============FIRST TEST================");
     }
 
 
@@ -36,6 +40,7 @@ public class JPAUnitTest {
         assertThat(tutorial).hasFieldOrPropertyWithValue("title", "Title1");
         assertThat(tutorial).hasFieldOrPropertyWithValue("description", "DescriptionOne");
         assertThat(tutorial).hasFieldOrPropertyWithValue("published", true);
+        logger.info("============SECOND TEST================");
     }
 
     @Test
@@ -48,6 +53,7 @@ public class JPAUnitTest {
         entityManager.persist(t3);
         Iterable<Tutorial> tutorials = repository.findAll();
         assertThat(tutorials).hasSize(3).contains(t1,t2,t3);
+        logger.info("============THIRD TEST================");
     }
 
     @Test
@@ -58,6 +64,7 @@ public class JPAUnitTest {
         entityManager.persist(t2);
         Tutorial tutResult = repository.findById(t2.getId()).get();
         assertThat(tutResult).isEqualTo(t2);
+        logger.info("============FOURTH TEST================");
     }
 
     @Test
@@ -70,6 +77,7 @@ public class JPAUnitTest {
         entityManager.persist(t3);
         Iterable<Tutorial> publishedTutorial = repository.findByPublished(true);
         assertThat(publishedTutorial).hasSize(2).contains(t1,t3);
+        logger.info("============FIFTH TEST================");
     }
 
     @Test
@@ -81,7 +89,8 @@ public class JPAUnitTest {
         Tutorial t3 = new Tutorial("Spring Data JPA", "Desc3", true);
         entityManager.persist(t3);
         Iterable<Tutorial> tutorials = repository.findByTitleContaining("ring");
-        assertThat(tutorials).hasSize(2).contains(t1,t2);
+        assertThat(tutorials).hasSize(2).contains(t1,t3);
+        logger.info("============SIXTH TEST================");
 
     }
 
@@ -101,10 +110,11 @@ public class JPAUnitTest {
 
         /* Now We r checking t2 */
         Tutorial checkTut = repository.findById(t2.getId()).get();
-        assertThat(checkTut.getId()).isEqualTo(updateTut.getId());
+        assertThat(checkTut.getId()).isEqualTo(t2.getId());
         assertThat(checkTut.getTitle()).isEqualTo(updateTut.getTitle());
         assertThat(checkTut.getDescription()).isEqualTo(updateTut.getDescription());
         assertThat(checkTut.isPublished()).isEqualTo(updateTut.isPublished());
+        logger.info("============SEVENTH TEST================");
     }
 
     @Test
@@ -123,6 +133,7 @@ public class JPAUnitTest {
         Iterable<Tutorial> tutorials = repository.findAll();
 
         assertThat(tutorials).hasSize(2).contains(tut1, tut3);
+        logger.info("============EIGHTH TEST================");
     }
 
     @Test
@@ -133,6 +144,7 @@ public class JPAUnitTest {
         repository.deleteAll();
 
         assertThat(repository.findAll()).isEmpty();
+        logger.info("============TENTH TEST================");
     }
 
 
