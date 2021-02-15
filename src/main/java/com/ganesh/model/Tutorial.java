@@ -17,8 +17,8 @@ import javax.persistence.*;
 @Table(name="tutorials")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Tutorial {
 
     @Id
@@ -29,15 +29,21 @@ public class Tutorial {
     @Column(name="description")
     private String description;
     @Column(name="published")
-    private String published;
+    private boolean published;
+
+    public Tutorial(String title, String description, boolean published) {
+        this.title = title;
+        this.description = description;
+        this.published = published;
+    }
 
     @Override
     public String toString() {
-        return "TutorialRepository{" +
+        return "Tutorial{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", published='" + published + '\'' +
+                ", published=" + published +
                 '}';
     }
 }
