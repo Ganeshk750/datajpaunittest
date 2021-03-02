@@ -12,23 +12,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 public class StateRepository {
+
     @Autowired
     private TestEntityManager entityManager;
-   @Autowired
-   StateRepository stateRepository;
+    @Autowired
+    private com.ganesh.repository.StateRepository stateRepository;
+
+    @Test
+    public void testCreateState(){
+       Country country = entityManager.persist(new Country("India"));
+       State newState = new State("KARNATAKA", country);
+       State savedState = stateRepository.save(newState);
+        assertThat(savedState).isNotNull();
+        assertThat(savedState.getId()).isGreaterThan(0);
+    }
 
 
-//    @Test
-//    public void testCreateState(){
-//       Country country = entityManager.persist(new Country("India"));
-//       State state;
-//        state = stateRepository.save(new State("Punjab", country));
-//        assertTrue(state).isNotNull();
-//    }
 }
