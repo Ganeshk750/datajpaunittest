@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name="states")
 public class State {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
