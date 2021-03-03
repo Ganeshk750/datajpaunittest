@@ -41,6 +41,7 @@ public class UserServiceTest {
         assertFalse(result);
     }
 
+
     @Test
     public void testEmailAllreadyExistsNotUnique(){
         Integer userId = null;
