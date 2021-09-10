@@ -59,6 +59,10 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("Testing how getListOfOwners() works")
     void getListOfOwners() {
+        car.setCurrentOwner("OWNER");
+        String [] ownerList = new String[]{"GANESH KUMAR", "OWNER"};
+        assertArrayEquals(ownerList, car.getListOfOwners().toArray());
     }
 }
