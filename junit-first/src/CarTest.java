@@ -40,7 +40,9 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("Testing how getYear() method works")
     void getYear() {
+        assertEquals(2021, car.getYear());
     }
 
     @Test
