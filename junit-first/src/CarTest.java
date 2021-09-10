@@ -27,13 +27,16 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("Testing how getNumber method works")
+    @DisplayName("Testing how getNumber() method works")
     void getNumber() {
         assertEquals("ABC-123", car.getNumber());
     }
 
     @Test
+    @DisplayName("Testing how setNumber() method works")
     void setNumber() {
+        car.setNumber("ABC-567");
+        assertEquals("ABC-567", car.getNumber());
     }
 
     @Test
