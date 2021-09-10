@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,8 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
 
+    Car car;
+
+    @BeforeEach
+    void prepareData(){
+      car = new Car("Honda","ABC-123", 2021, "GANESH KUMAR");
+    }
+
     @Test
+    @DisplayName("Testing for getManufacture() works")
     void getManufacturer() {
+        assertEquals("Honda", car.getManufacturer());
     }
 
     @Test
