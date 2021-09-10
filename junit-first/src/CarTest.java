@@ -46,7 +46,9 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("Testing how getCurrentOwner() method works")
     void getCurrentOwner() {
+        assertEquals("GANESH KUMAR", car.getCurrentOwner());
     }
 
     @Test
