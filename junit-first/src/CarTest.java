@@ -21,13 +21,15 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("Testing for getManufacture() works")
+    @DisplayName("Testing how getManufacture() method works")
     void getManufacturer() {
         assertEquals("Honda", car.getManufacturer());
     }
 
     @Test
+    @DisplayName("Testing how getNumber method works")
     void getNumber() {
+        assertEquals("ABC-123", car.getNumber());
     }
 
     @Test
