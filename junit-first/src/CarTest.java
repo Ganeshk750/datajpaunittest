@@ -52,7 +52,10 @@ class CarTest {
     }
 
     @Test
+    @DisplayName("Testing how setCurrentOwner() method works")
     void setCurrentOwner() {
+        car.setCurrentOwner("OWNER");
+        assertEquals("OWNER", car.getCurrentOwner());
     }
 
     @Test
